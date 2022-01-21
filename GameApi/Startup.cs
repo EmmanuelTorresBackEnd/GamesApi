@@ -31,6 +31,11 @@ namespace GameApi
 
             services.AddControllers();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "GameApi" });
+            });
+
             services.AddScoped<GameContext, GameContext>();
 
             services.AddTransient<GameRepository, GameRepository>();
@@ -49,6 +54,14 @@ namespace GameApi
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "GameApi");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
