@@ -20,11 +20,12 @@ namespace GameApi.Contexts
             if (!optionsBuilder.IsConfigured)
             {
                 // cada provedor tem sua sintaxe para especificação
-            optionsBuilder.UseSqlServer("Data Source = WIN-4FKM2ALTJ4D\\SQLEXPRESS; initial catalog = GamesApi; Integrated Security = true");
+            optionsBuilder.UseSqlServer("Data Source = WIN-4FKM2ALTJ4D\\SQLEXPRESS; initial catalog = GameApiDb; Integrated Security = true");
             }
         }
         // dbset representa as entidades que serão utilizadas nas operações de leitura, criação, atualização e deleção
-        public DbSet<Games> Games { get; set; }
+        public DbSet<Game> Game { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }
 

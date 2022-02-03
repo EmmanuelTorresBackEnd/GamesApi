@@ -1,6 +1,6 @@
 ﻿namespace GameApi.Models
 {
-    public class Games
+    public class Game
     {
         public int Id { get; set; }
 

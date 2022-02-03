@@ -31,6 +31,18 @@ namespace GameApi
 
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                      builder =>
+                      {
+                      builder.WithOrigins("http://localhost:3000")
+                             .AllowAnyHeader()
+                             .AllowAnyMethod();
+                                         
+                      });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "GameApi" });
@@ -39,6 +51,8 @@ namespace GameApi
             services.AddScoped<GameContext, GameContext>();
 
             services.AddTransient<GameRepository, GameRepository>();
+
+            services.AddTransient<UsuarioRepository, UsuarioRepository>();
 
         }
 
@@ -66,6 +80,8 @@ namespace GameApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

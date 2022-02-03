@@ -14,38 +14,38 @@ namespace GameApi.Repositories
             _context = context;
         }
 
-        public List<Games> Listar()
+        public List<Game> Listar()
         {
-            return _context.Games.ToList();
+            return _context.Game.ToList();
         }
 
-        public Games buscarPorId(int id)
+        public Game buscarPorId(int id)
         {
-            return _context.Games.Find(id);
+            return _context.Game.Find(id);
 
         }
 
-        public void Cadastrar(Games games)
+        public void Cadastrar(Game game)
         {
-            _context.Games.Add(games);
+            _context.Game.Add(game);
 
             _context.SaveChanges();
         }
 
-        public void Atualizar(int id, Games games)
+        public void Atualizar(int id, Game game)
         {
-            Games gameBuscado = _context.Games.Find(id);
+            Game gameBuscado = _context.Game.Find(id);
 
             if (gameBuscado != null)
             {
-                gameBuscado.Titulo = games.Titulo;
-                gameBuscado.Genero = games.Genero;
-                gameBuscado.Descricao = games.Descricao;
-                gameBuscado.Disponivel = games.Disponivel;
+                gameBuscado.Titulo = game.Titulo;
+                gameBuscado.Genero = game.Genero;
+                gameBuscado.Descricao = game.Descricao;
+                gameBuscado.Disponivel = game.Disponivel;
 
             }
 
-            _context.Games.Update(gameBuscado);
+            _context.Game.Update(gameBuscado);
 
             _context.SaveChanges();
 
@@ -57,13 +57,14 @@ namespace GameApi.Repositories
         /// <param name="id"></param>
         public void Deletar(int id)
         {
-            Games gameBuscado = _context.Games.Find(id);
+            Game gameBuscado = _context.Game.Find(id);
 
-            _context.Games.Remove(gameBuscado);
+            _context.Game.Remove(gameBuscado);
 
             _context.SaveChanges();
         }
 
+       
     }
 
 }
